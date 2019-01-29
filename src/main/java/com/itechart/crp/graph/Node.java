@@ -12,4 +12,13 @@ public class Node {
     String name;
     Map<Node, Integer> adjNodes = new HashMap<>();
     Integer timeToSource;
+
+    public Node(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }

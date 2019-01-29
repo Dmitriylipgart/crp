@@ -1,31 +1,40 @@
 package com.itechart.crp;
 
+import com.itechart.crp.graph.Graph;
+import com.itechart.crp.graph.Node;
+import com.itechart.crp.service.CityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import java.util.ArrayDeque;
-import java.util.Collections;
-import java.util.Queue;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+@EnableJpaRepositories
 @SpringBootApplication
 public class CrpApplication {
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
+//
+//        Graph graph = new Graph();
+//        graph.init();
+//
+//        Node sourceCity = graph.getCities().get("San Francisco");
+//
+//        Set<Node> cities = graph.getReachableCities(sourceCity, 60);
+//
+//        System.out.println(cities);
+//    }
 
-        SpringApplication.run(CrpApplication.class, args);
 
-        Queue<Integer> stack = Collections.asLifoQueue(new ArrayDeque<>());
-        stack.add(1);
-        stack.add(2);
-        stack.add(3);
-        stack.add(4);
-        System.out.println(stack);
-        stack.poll();
-        System.out.println(stack);
-        stack.add(5);
-        System.out.println(stack);
-
-    }
+public static void main(String[] args) {
+    SpringApplication.run(CrpApplication.class, args);
 
 }
+
+}
+
+
 

@@ -1,7 +1,6 @@
 package com.itechart.crp.service;
 
 import com.itechart.crp.Entity.City;
-import com.itechart.crp.graph.Node;
 import com.itechart.crp.repository.CityRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +20,9 @@ public class CityServiceImpl implements CityService {
 
     private final int AVERAGE_SPEED = 50;
 
-    public List<City> getReachableNodes(String cityName, int time){
+    @Override
+    @Transactional
+    public Set<City> getReachableNodes(String cityName, int time){
 
         City city = getCityByName(cityName);
         Set<City> visited = new HashSet<>();
@@ -35,10 +36,12 @@ public class CityServiceImpl implements CityService {
                 visited.add(node);
                 for (City n : node.getAdjCities().keySet()) {
                     if(!visited.contains(n)){
-                        int distanceToSource = node.getDistanceToSource() + node.getAdjCities().get(n);
-                        int timeToSource = distanceToSource;
+                        double distanceToSource = node.getDistanceToSource() + node.getAdjCities().get(n);
+                        double timeToSource = distanceToSource / AVERAGE_SPEED * 60;
                         if(timeToSource <= time){
-                            n.setTimeToSource(timeToSource);
+                            if(n.getDistanceToSource() == 0 || distanceToSource < n.getDistanceToSource()){
+                                n.setDistanceToSource(distanceToSource);
+                            }
                             stack.add(n);
                         }
                     }
@@ -47,7 +50,6 @@ public class CityServiceImpl implements CityService {
         }
         visited.remove(city);
         return visited;
-
     }
 
     @Override

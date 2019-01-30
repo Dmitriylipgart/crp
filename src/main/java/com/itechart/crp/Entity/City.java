@@ -1,8 +1,5 @@
 package com.itechart.crp.Entity;
 
-
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,14 +21,8 @@ public class City {
     @Column(name = "city_name")
     String name;
 
-    @Column(name = "state_name")
-    String stateName;
-
-    @Column(name = "state_id")
-    int stateId;
-
     @Transient
-    int distanceToSource;
+    double distanceToSource = 0.0;
 
     @ElementCollection
     @CollectionTable(name="destinations")

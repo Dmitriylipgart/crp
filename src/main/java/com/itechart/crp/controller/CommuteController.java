@@ -27,11 +27,8 @@ public class CommuteController {
     public Set<String> getReachableCities(@RequestParam(value = "city") String cityName,
                                            @RequestParam(value = "minutes") int minutes)
     {
-        Graph graph = new Graph();
-        graph.init();
-        Node sourceCity = graph.getCities().get(cityName);
-        Set<Node> cities = graph.getReachableCities(sourceCity, minutes);
-        return  cities.stream().map(Node::getName).collect(Collectors.toSet());
+        Set<City> cities = cityService.getReachableNodes(cityName, minutes);
+        return  cities.stream().map(City::getName).collect(Collectors.toSet());
     }
 
     @PostMapping("/city")

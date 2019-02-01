@@ -3,15 +3,15 @@ package com.itechart.crp.graph;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 public class Node {
     String name;
-    Map<Node, Integer> adjNodes = new HashMap<>();
-    Integer timeToSource;
+    Set<Node> adjNodes = new HashSet<>();
+
 
     public Node(String name) {
         this.name = name;

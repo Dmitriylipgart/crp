@@ -12,12 +12,8 @@ public class CrpApplication {
 
         Graph graph = new Graph();
         graph.init();
-
-        Node sourceCity = graph.getCities().get("San Francisco");
-
-        Set<Node> cities = graph.getReachableCities(sourceCity, 30);
-
-        System.out.println(cities);
+        System.out.println(graph.isCyclic(graph.getGraph()));
+        System.out.println(graph.getCount());
     }
 
 }

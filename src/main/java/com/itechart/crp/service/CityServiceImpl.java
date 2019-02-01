@@ -59,38 +59,7 @@ public class CityServiceImpl implements CityService {
         return city;
     }
 
-    @Override
-    public void saveCity() {
-        City SanFrancisco = new City("San Francisco");
-        City DalyCity = new City("Daly City");
-        City SanBruno = new City("San Bruno");
 
-        cityRepository.saveAndFlush(SanFrancisco);
-        cityRepository.saveAndFlush(DalyCity);
-        cityRepository.saveAndFlush(SanBruno);
-
-        SanFrancisco.setAdjCities(setCities(new Object[][]{
-                        {DalyCity, 10},
-                        {SanBruno, 20}
-                })
-        );
-
-        DalyCity.setAdjCities(setCities(new Object[][]{
-                        {SanFrancisco, 10},
-                        {SanBruno, 10}
-                })
-        );
-
-        SanBruno.setAdjCities(setCities(new Object[][]{
-                        {SanFrancisco, 20},
-                        {DalyCity, 10}
-                })
-        );
-
-        cityRepository.saveAndFlush(SanFrancisco);
-        cityRepository.saveAndFlush(DalyCity);
-        cityRepository.saveAndFlush(SanBruno);
-    }
 
     private Map<City, Integer> setCities(Object[][] arr){
         return Stream.of(arr).collect(

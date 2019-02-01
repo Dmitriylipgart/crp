@@ -32,10 +32,6 @@ public class CommuteController {
         return  cities.stream().map(City::getName).collect(Collectors.toSet());
     }
 
-    @PostMapping("/city")
-    public void saveCity(){
-        cityService.saveCity();
-    }
 
     @GetMapping("/city")
     public City getCity(@RequestParam(name = "city") String cityName){

@@ -27,7 +27,7 @@ public class City {
     @ElementCollection
     @CollectionTable(name="destinations")
     @MapKeyColumn(name="city_id")
-    Map<City, Integer> adjCities = new HashMap<>();
+    Map<City, Double> adjCities = new HashMap<>();
 
 
     public City(String name) {

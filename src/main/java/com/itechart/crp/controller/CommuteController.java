@@ -2,6 +2,7 @@ package com.itechart.crp.controller;
 
 
 import com.itechart.crp.Entity.City;
+import com.itechart.crp.dto.CityDto;
 import com.itechart.crp.graph.Graph;
 import com.itechart.crp.graph.Node;
 import com.itechart.crp.service.CityService;
@@ -26,18 +27,13 @@ public class CommuteController {
     }
 
     @GetMapping("/range")
-    public Set<String> getReachableCities(@RequestParam(value = "city") String cityName,
+    public List<CityDto> getReachableCities(@RequestParam(value = "city") String cityName,
                                            @RequestParam(value = "minutes") int minutes)
     {
         Set<City> cities = cityService.getReachableNodes(cityName, minutes);
-        return  cities.stream().map(City::getName).collect(Collectors.toSet());
+        return  cities.stream().map(city -> new CityDto(city.getName(), city.getDistanceToSource())).collect(Collectors.toList());
     }
 
-
-    @GetMapping("/city")
-    public List<City> getCities(@RequestParam(name = "city") String cityName){
-        return cityService.getCitiesByName(cityName);
-    }
     @GetMapping("/cities")
     public List<String> getCityNames(@RequestParam(name = "city") String cityName){
         return cityService.getCityNamesByName(cityName);

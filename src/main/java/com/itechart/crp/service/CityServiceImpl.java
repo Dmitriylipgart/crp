@@ -53,12 +53,6 @@ public class CityServiceImpl implements CityService {
         return visited;
     }
 
-    @Override
-    @Transactional
-    public List<City> getCitiesByName(String name){
-        List<City>  cities = cityRepository.findAllByNameContainingIgnoreCase(name);
-        return cities;
-    }
 
     @Override
     @Transactional

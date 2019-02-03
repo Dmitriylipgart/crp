@@ -7,7 +7,6 @@ import java.util.Set;
 
 public interface CityService {
     City getCityByName(String cityName);
-    List<City> getCitiesByName(String cityName);
     List<String> getCityNamesByName(String cityName);
     Set<City> getReachableNodes(String cityName, int time);
 }

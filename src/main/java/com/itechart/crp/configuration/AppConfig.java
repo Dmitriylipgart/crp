@@ -19,19 +19,19 @@ import java.util.UUID;
 @EnableMBeanExport(registration= RegistrationPolicy.IGNORE_EXISTING)
 public class AppConfig extends HikariConfig {
 
-    @Bean
-    public DataSource dataSource() {
-        HikariDataSource dataSource = new HikariDataSource(this);
-        dataSource.setPoolName("dataSource_" + UUID.randomUUID().toString());
-        return dataSource;
-    }
-
-    @Bean
-    @ConditionalOnMissingBean(value = ObjectNamingStrategy.class, search = SearchStrategy.CURRENT)
-    public ParentAwareNamingStrategy objectNamingStrategy() {
-        ParentAwareNamingStrategy namingStrategy = new ParentAwareNamingStrategy(new AnnotationJmxAttributeSource());
-        namingStrategy.setDefaultDomain("domain_" + UUID.randomUUID().toString());
-        return namingStrategy;
-    }
+//    @Bean
+//    public DataSource dataSource() {
+//        HikariDataSource dataSource = new HikariDataSource(this);
+//        dataSource.setPoolName("dataSource_" + UUID.randomUUID().toString());
+//        return dataSource;
+//    }
+//
+//    @Bean
+//    @ConditionalOnMissingBean(value = ObjectNamingStrategy.class, search = SearchStrategy.CURRENT)
+//    public ParentAwareNamingStrategy objectNamingStrategy() {
+//        ParentAwareNamingStrategy namingStrategy = new ParentAwareNamingStrategy(new AnnotationJmxAttributeSource());
+//        namingStrategy.setDefaultDomain("domain_" + UUID.randomUUID().toString());
+//        return namingStrategy;
+//    }
 
 }

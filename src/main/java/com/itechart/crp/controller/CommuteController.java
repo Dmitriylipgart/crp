@@ -8,6 +8,7 @@ import com.itechart.crp.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,11 @@ public class CommuteController {
 
 
     @GetMapping("/city")
-    public City getCity(@RequestParam(name = "city") String cityName){
-        return cityService.getCityByName(cityName);
+    public List<City> getCities(@RequestParam(name = "city") String cityName){
+        return cityService.getCitiesByName(cityName);
+    }
+    @GetMapping("/cities")
+    public List<String> getCityNames(@RequestParam(name = "city") String cityName){
+        return cityService.getCityNamesByName(cityName);
     }
 }

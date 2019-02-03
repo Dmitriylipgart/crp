@@ -2,6 +2,7 @@ package com.itechart.crp.service;
 
 import com.itechart.crp.Entity.City;
 import com.itechart.crp.repository.CityRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,9 +55,23 @@ public class CityServiceImpl implements CityService {
 
     @Override
     @Transactional
+    public List<City> getCitiesByName(String name){
+        List<City>  cities = cityRepository.findAllByNameContainingIgnoreCase(name);
+        return cities;
+    }
+
+    @Override
+    @Transactional
     public City getCityByName(String name){
-        City city = cityRepository.findCityByNameStartingWith(name);
+        City city = cityRepository.findByName(name);
         return city;
+    }
+
+    @Override
+    @Transactional
+    public List<String> getCityNamesByName(String name){
+        List<String> cities = cityRepository.findCitiesByNameContainingIgnoreCase(name, PageRequest.of(0, 10));
+        return cities;
     }
 
 
